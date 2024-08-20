@@ -92,10 +92,12 @@ cnt=1;
     end
 end
 
-for i=1:276
-        mesi_diafora(i)=mean(df(i,:));
-        [h(i),~,~,~] = ttest(df(i,:));
-end
+% for i=1:276
+%         mesi_diafora(i)=mean(df(i,:));
+%         [h(i),~,~,~] = ttest(df(i,:));
+% end
+mesi_diafora=(mean(df'));
+[h,~,~,~] = ttest(df');
 
 mesi_diafora = squareform(mesi_diafora);
 h = squareform(h);

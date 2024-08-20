@@ -1,4 +1,4 @@
-%Ioannides Georgios
+%Ioannidis Georgios
 
 clc;
 clear;
@@ -37,7 +37,7 @@ Su_tempr = zeros(n_sum/hours , hours);
 A_tempr = zeros(n_aut/hours , hours);
 
     j=1;
-    for i=1:n_win % xorizo ta podilata gia kathe epoxi se ores kathe stili kai ora
+    for i=1:n_win % xorizo ta podilata se ores(kathe stili kai ora)
        W_bikes (j,winter(i,2) +1)=  winter(i,1); %kano to idio gia ti thermokrasia
        W_tempr (j,winter(i,2)+1) = winter (i,3);
        if mod(i,hours)==0
@@ -98,7 +98,6 @@ A_tempr = zeros(n_aut/hours , hours);
 
        % Elexos simantikotitas tou sinte. sisxetisis me statistiko-t    
        t_win = r_win(i)*sqrt((n_win-2)/(1-r_win(i)^2));
-       t_win = sort(t_win);
        if abs(t_win)>tcrit_win
          sign_win(i) = r_win(i);
          fprintf(' Hour: %d , abs(t-statistic)=%f > %f -> reject H0 \n',i-1,abs(t_win),tcrit_win);
@@ -107,7 +106,8 @@ A_tempr = zeros(n_aut/hours , hours);
          fprintf(' Hour: %d , abs(t-statistic)=%f > %f -> no reject H0 \n',i-1,abs(t_win),tcrit_win);
        end
     end
-        figure;
+    % Deixno to apotelesmata meso bars
+    figure;
     subplot(1,2,1)
     bar(sign_win);
     xlabel('hours');
@@ -128,7 +128,6 @@ A_tempr = zeros(n_aut/hours , hours);
 
        % Elexos simantikotitas tou sinte. sisxetisis me statistiko-t    
        t_spr = r_spr(i)*sqrt((n_spr-2)/(1-r_spr(i)^2));
-       t_spr=sort(t_spr);
        if abs(t_spr)>tcrit_spr
          sign_spr(i) = r_spr(i);
          fprintf(' Hour: %d , abs(t-statistic)=%f > %f -> reject H0 \n',i-1,abs(t_spr),tcrit_spr);
@@ -160,7 +159,6 @@ A_tempr = zeros(n_aut/hours , hours);
 
        % Elexos simantikotitas tou sinte. sisxetisis me statistiko-t    
        t_sum = r_sum(i)*sqrt((n_sum-2)/(1-r_sum(i)^2));
-       t_sum=sort(t_sum);
        if abs(t_sum)>tcrit_sum
          sign_sum(i) = r_sum(i);
          fprintf(' Hour: %d , abs(t-statistic)=%f > %f -> reject H0 \n',i-1,abs(t_sum),tcrit_sum);
@@ -192,7 +190,6 @@ A_tempr = zeros(n_aut/hours , hours);
 
        % Elexos simantikotitas tou sinte. sisxetisis me statistiko-t    
        t_aut = r_aut(i)*sqrt((n_aut-2)/(1-r_aut(i)^2));
-       t_aut =sort(t_aut);
        if abs(t_aut)>tcrit_aut
          sign_aut(i) = r_aut(i);
          fprintf(' Hour: %d , abs(t-statistic)=%f > %f -> reject H0 \n',i-1,abs(t_aut),tcrit_aut);
@@ -216,12 +213,12 @@ A_tempr = zeros(n_aut/hours , hours);
 
  %{
    Paratiroume oti to kalokeri exei tis mikroteres times stis sisxetisis
-  (poli mikres katholoy isxires) kai tis perissoteres ores pou oi sisxetisis epalitheoun tin mideniki
-  ipothesi (oti den iparxi sisxetisi). Episis einai i moni epoxi opou exei
-  arnitikes sisxetisis. 
+  (poli mikres katholoy isxires) akoma kai tis ores pou oi sisxetisis epalitheoun 
+  tin mideniki ipothesi (oti den iparxi sisxetisi). Episis einai i moni epoxi opou 
+  exei arnitikes sisxetisis. 
   Gia tis ipolipes epoxes ipsiloteres sisxetisis vriskonte metaxi oron
-  15-18 me to fthinoporo na exei mia ipsili sisxetisi tin ora 1. (Episis to
-  kai kalokairi exei tis psiloteres sisxetisis metaksi ekinon ton oron omos
+  15-18 me to fthinoporo na exei mia ipsili sisxetisi tin ora 1. (Episis kai to
+  kalokairi exei tis psiloteres sisxetisis metaksi ekinon ton oron omos
   poli mikres times). Oi psiloteres sisxetisis ton 3 epoxon exoyn times metaksi peripou 6.5-7 
   oi opoies den einai kai poli isxires omos metria isxires
   ** PROSOXI sta dedomena oi ores pou dinonte einai apo 0-23 eno stin apantisi apo 1-24
