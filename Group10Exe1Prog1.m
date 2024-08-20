@@ -1,6 +1,4 @@
 %Ioannidis Georgios 
-
-
 clc;
 clear;
 close all;
@@ -15,7 +13,7 @@ epoxes = [0 0 0 0]; %kathe thesi antistixi se ena counter gia ta dedomena pou ex
 hours = 24;         %thesi 1 antistixi ston xeimona pou i timi tou season einai 1 klp
 
 for i=1:length(data)
-    epoxes(data(i,11))= epoxes(data(i,11)) +1; 
+    epoxes(data(i,11))= epoxes(data(i,11)) +1; %για να βρω δεδομένα καθε εποχής
 end
 
 %xorizo ta dedomena se epoxes
@@ -26,11 +24,11 @@ autumn = data(epoxes(1)+epoxes(2)+epoxes(3)+1:epoxes(1)+epoxes(2)+epoxes(3)+epox
 
   n_win = length(winter); %posa dedomena exo se kathe epoxi to kano me length
   n_spr = length(spring); %etsi kano kai epalitheusi me epoxes(1...4)
-  n_sum = length(summer);
+  n_sum = length(summer); %gia to oti eginan sosta oi kataxorisis
   n_aut = length(autumn);
 
    
- katanomes = {'Normal'  , 'Logistic'  , 'Lognormal'   ,'Exponential' ,'Weibull','Gamma','Rayleigh','Kernel','Rician' ,'Extremevalue'}; 
+ katanomes = {'Normal'  ,'Logistic'  , 'Lognormal'   ,'Exponential' ,'Weibull','Gamma','Rayleigh','Kernel','Rician' ,'Extremevalue'}; 
     
     best_katanomi_win = 0; %arxikopoiisi tou index tis kaliteris katanomis 
     best_katanomi_spr = 0;
@@ -40,7 +38,7 @@ autumn = data(epoxes(1)+epoxes(2)+epoxes(3)+1:epoxes(1)+epoxes(2)+epoxes(3)+epox
     % pvalue na einai > a
 
    
-        best_win = 0;
+        best_win = 0; %vazo mia elaxisti timi gia tin ptimi
         best_spr = 0;
         best_sum = 0;
         best_aut = 0;
@@ -60,7 +58,7 @@ autumn = data(epoxes(1)+epoxes(2)+epoxes(3)+1:epoxes(1)+epoxes(2)+epoxes(3)+epox
              %etsi epilego tin megaliteri p timi gia kate epoxi
              if p_win > best_win && p_win>a  %otan einai poli mikro to p den prosarmozetai stin katanomi
                 best_win = p_win;
-                best_katanomi_win = i;
+                best_katanomi_win = i; % perno ti thesi tis kaliteris katanomis apo 'katanomes'
              end
 
               if p_spr > best_spr && p_spr>a
@@ -87,5 +85,7 @@ autumn = data(epoxes(1)+epoxes(2)+epoxes(3)+1:epoxes(1)+epoxes(2)+epoxes(3)+epox
      fprintf('Best distribution at %s : %s\n', seasons{3}, katanomes{best_katanomi_sum} );
      fprintf('Best distribution at %s : %s\n', seasons{4}, katanomes{best_katanomi_aut} );
 
-% Paratiro oti gia oles tis epoxes i katallili katanomi einai idia.
+% Paratiro oti gia oles tis epoxes i katallili katanomi einai idia.(kernel)
+% Episis paratiro pos oi ptimes ton allon katanomon einai poli mikres
+% kai den tha prosarmozontan se kapoia alli katanomi apo autes poy elenksa
 
